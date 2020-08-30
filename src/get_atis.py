@@ -15,7 +15,11 @@ load_dotenv()
 AVWX_TOKEN = os.getenv('AVWX_TOKEN')
 
 headers = {
+<<<<<<< HEAD
     'Authorization': AVWX_TOKEN
+=======
+    'Authorization': 'Token SecretToken'
+>>>>>>> 6538704576f50f002d65b720b7a7baabf23156c6
 }
 
 def get_atis(airport_icao, information_spoken, runways_dep, runways_arr, ils):
