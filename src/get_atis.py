@@ -12,7 +12,7 @@ runways_arr = "1 3 Left"
 ils = "1 3 Left"
 
 headers = {
-    'Authorization': 'Token 2XUl-ekAF95tdjjkKQwIBvvIy0UxUWHvEPlzlvi9PnM'
+    'Authorization': 'Token SecretToken'
 }
 
 def get_atis(airport_icao, information_spoken, runways_dep, runways_arr, ils):
