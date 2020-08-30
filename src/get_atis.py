@@ -3,7 +3,7 @@ import os
 from urllib import request
 from urllib import parse
 import json
-
+from dotenv import load_dotenv
 
 airport_icao = "KJFK"
 information_letter = "Golf"
@@ -11,8 +11,11 @@ runways_dep = "1 3 Right"
 runways_arr = "1 3 Left"
 ils = "1 3 Left"
 
+load_dotenv()
+AVWX_TOKEN = os.getenv('AVWX_TOKEN')
+
 headers = {
-    'Authorization': 'Token 2XUl-ekAF95tdjjkKQwIBvvIy0UxUWHvEPlzlvi9PnM'
+    'Authorization': AVWX_TOKEN
 }
 
 def get_atis(airport_icao, information_spoken, runways_dep, runways_arr, ils):
@@ -55,3 +58,12 @@ def get_atis(airport_icao, information_spoken, runways_dep, runways_arr, ils):
     """
 
     return text
+
+def get_raw_atis(airport_icao):
+    atis_json = request.Request(f'https://avwx.rest/api/metar/{airport_icao}?onfail=error', headers=headers)
+
+    response = request.urlopen(atis_json).read()
+
+    response = json.loads(response)
+
+    return response["raw"]
